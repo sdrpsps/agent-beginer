@@ -27,7 +27,9 @@ const embeddings = new OpenAIEmbeddings({
 
 // 初始化 Milvus 客户端
 const client = new MilvusClient({
-  address: "localhost:19530",
+  username: process.env.MILVUS_USERNAME,
+  password: process.env.MILVUS_PASSWORD,
+  address: process.env.MILVUS_ADDRESS,
 });
 
 /**

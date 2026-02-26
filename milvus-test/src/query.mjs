@@ -15,7 +15,9 @@ const embeddings = new OpenAIEmbeddings({
 });
 
 const client = new MilvusClient({
-  address: "localhost:19530",
+  username: process.env.MILVUS_USERNAME,
+  password: process.env.MILVUS_PASSWORD,
+  address: process.env.MILVUS_ADDRESS,
 });
 
 async function getEmbedding(text) {
