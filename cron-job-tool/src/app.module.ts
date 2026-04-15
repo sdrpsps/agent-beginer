@@ -1,17 +1,17 @@
 import { MailerModule } from '@nestjs-modules/mailer';
-import { Inject, Module, OnApplicationBootstrap } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule';
+import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'node:path';
 import { AiModule } from './ai/ai.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { Job } from './job/entities/job.entity';
 import { JobModule } from './job/job.module';
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
-import { Job } from './job/entities/job.entity';
 
 @Module({
   imports: [
@@ -60,25 +60,4 @@ import { Job } from './job/entities/job.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements OnApplicationBootstrap {
-  @Inject(SchedulerRegistry)
-  schedulerRegistry: SchedulerRegistry;
-
-  onApplicationBootstrap() {
-    // const job = new CronJob(CronExpression.EVERY_SECOND, () => {
-    //   console.log('run job');
-    // });
-    // this.schedulerRegistry.addCronJob('job1', job);
-    // job.start();
-    // setTimeout(() => {
-    //   this.schedulerRegistry.deleteCronJob('job1');
-    // }, 5000);
-    // const intervalRef = setInterval(() => {
-    //   console.log('run interval job');
-    // }, 1000);
-    // this.schedulerRegistry.addInterval('interval1', intervalRef);
-    // setTimeout(() => {
-    //   this.schedulerRegistry.deleteInterval('interval1');
-    // }, 5000);
-  }
-}
+export class AppModule {}
